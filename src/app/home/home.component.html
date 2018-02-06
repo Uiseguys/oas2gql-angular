@@ -1,0 +1,165 @@
+<div *ngIf="!auth.isAuthenticated()">
+  
+
+  <div class="container">
+
+    
+
+    <form class="form-horizontal" #heroForm="ngForm">
+      <div class="row">
+        <div class="col-md-6">
+          You are not logged in! PleaseLog In to continue.
+        </div>
+      </div>
+      
+        <div class="row">
+            
+            <div class="col-md-6">
+                <div class="form-group has-danger">
+                    <label class="sr-only" for="email">E-Mail Address</label>
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+                        <input type="text" class="form-control" id="username" name="username"
+                               placeholder="Username" required autofocus [(ngModel)]="formdata.username" >
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="sr-only" for="password">Password</label>
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
+                        <input type="password" name="password" class="form-control" id="password"
+                               placeholder="Password" required [(ngModel)]="formdata.password" >
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-control-feedback">
+                    <span class="text-danger align-middle">
+                    <!-- Put password error message here -->    
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+          <strong>{{errorMessage}}!</strong> 
+        </div>
+        
+        <div class="row" style="padding-top: 1rem">
+            
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-success" (click)="login()"><i class="fa fa-sign-in"></i> Login</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+</div>
+
+<div *ngIf="auth.isAuthenticated()">
+  <div>You are logged in as:
+    <span style="font-weight: bold">{{userinfo.username}}</span>
+  </div>
+  <div>with roles
+    <span style="font-weight: bold">{{userinfo.roles}}</span>
+  </div>
+
+  <hr/>
+
+  <div class="card p-2">
+    <div class="card-block">
+      <h4 class="card-title">REST</h4>
+
+      <div>
+        <!-- dirvers -->
+        <h6 class="card-subtitle mb-2 text-muted">
+          Drivers (access: "admin"):
+        </h6>
+        <ul>
+          <li *ngFor="let driver of drivers | async">
+            {{driver.name}} ({{driver.id}})
+          </li>
+        </ul>
+      </div>
+
+      <div class="mt-4">
+        <!-- vehicles -->
+        <h6 class="card-subtitle mb-2 text-muted">
+          Vehicles (access: $authenticated):
+        </h6>
+        <ul>
+          <li *ngFor="let vehicle of vehicles | async">
+            {{vehicle.name}} ({{vehicle.id}})
+          </li>
+        </ul>
+      </div>
+
+      <div class="mt-4">
+        <!-- logs -->
+        <h6 class="card-subtitle mb-2 text-muted">
+          Logs (access: $everyone):
+        </h6>
+        <ul>
+          <li *ngFor="let log of logs | async">
+            {{log.text}} ({{log.id}})
+          </li>
+        </ul>
+      </div>
+
+
+    </div>
+
+
+  </div>
+  <div class="card mt-4 p-2">
+    <div class="card-block">
+      <h4 class="card-title">graphql</h4>
+
+
+      <div>
+        <!-- drivers -->
+        <h6 class="card-subtitle mb-2 text-muted">
+          Drivers graphql (admin only):
+        </h6>
+
+        <div *ngIf="drivers_gql?.data">
+          <ul>
+            <li *ngFor="let driver of drivers_gql?.data">
+              {{driver.name}} ({{driver.id}})
+            </li>
+          </ul>
+        </div>
+
+        <div *ngIf="drivers_gql?.error">
+          {{drivers_gql.error}}
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <!-- drivers -->
+        <h6 class="card-subtitle mb-2 text-muted">
+          Vehicles graphql (any):
+        </h6>
+
+        <div *ngIf="vehicles_gql?.data">
+          <ul>
+            <li *ngFor="let vehicle of vehicles_gql?.data">
+              {{vehicle.name}}, {{vehicle.type}} ({{vehicle.id}})
+            </li>
+          </ul>
+        </div>
+
+        <div *ngIf="vehicles_gql?.error">
+          {{vehicles_gql.error}}
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,52 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+<nav class="navbar navbar-expand-lg">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item" *ngIf="!auth.isAuthenticated()" (click)="auth.login()">
+            <a class="nav-link" href="#">Login</a>
+          </li>
+
+    </ul>
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item " 
+        *ngIf="auth.isAuthenticated()"
+        (click)="auth.logout()">
+          <a class="nav-link" href="#">Logout</a>
+        </li>
+    </ul>
+  </nav>
+
+<main class="container">
+  <router-outlet></router-outlet>
+</main>
+
+<!--
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>  
+</div>
+
+<hr/>
+<h1>
+  Drivers: 
+</h1>  
+<ul>
+  <li *ngFor="let driver of drivers | async">
+    {{driver.firstName}} {{driver.lastName}} ({{driver._id}})
+  </li>
+</ul>
+
+<hr/>
+<h1>
+  Vehicles: 
+</h1>  
+<ul>
+  <li *ngFor="let vehicle of vehicles | async">
+    {{vehicle.name}} ({{vehicle._id}})
+  </li>
+</ul>
+-->

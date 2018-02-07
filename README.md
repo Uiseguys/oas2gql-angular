@@ -1,27 +1,33 @@
-# Oas2gqlAngular
+# OAS to GraphQL + Angular
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.0.
 
-## Development server
+The project is a sample Angular implementation of a rest-to-graphql service. 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+# Demo
+Live demo [here](https://uiseguys-oas2gql-angular.herokuapp.com/). Use `admin/1234` or `test/test` as credentials.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+Refer to following links for further info:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+Rest service: [repo](https://github.com/Uiseguys/loopback3-server) | [demo](https://uiseguys-loopback3-server.herokuapp.com/explorer/)
 
-## Running unit tests
+Rest to graphql service: [repo](https://github.com/Uiseguys/oas2gql-server) | [demo](https://uiseguys-oas2gql-server.herokuapp.com/graphql)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+# Installation
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+`npm install`
 
-## Further help
+`npm run build:prod`
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Navigate to `localhost:8080`. Use `admin/1234` or `test/test` as credentials.
+
+You can also use the `ng serve` command to run the server and watch for file changes. However you will need to either 
+
+* install and run the other 2 services 
+
+or 
+
+* update development env vars to match their production counterparts

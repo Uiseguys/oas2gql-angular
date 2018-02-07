@@ -6,10 +6,8 @@
 		"ng": "ng",
 		"start": "node server.js",
 		"build": "ng build",
-		"test": "ng test",
-		"lint": "ng lint",
-		"e2e": "ng e2e",
-		"postinstall": "ng build --aot --target=production"
+		"build:prod":  "ng build --aot --target=production",
+		"postinstall": "npm run build:prod"
 	},
 	"private": true,
 	"dependencies": {

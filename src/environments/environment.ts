@@ -5,7 +5,6 @@
 
 export const environment = {
   production: false,
-  restdbCallbackUrl: 'http://localhost:4200/callback',
   graphqlServerUrl: 'http://localhost:4000/graphql',
   restServerUrl: 'http://localhost:3000/api'
 };
